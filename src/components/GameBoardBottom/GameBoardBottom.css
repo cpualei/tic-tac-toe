@@ -1,0 +1,45 @@
+.section3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.score-tiles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 72px;
+    width: 140px;
+    border-radius: 15px;
+}
+
+.score-tiles {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0.875px;
+}
+
+.score {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+
+p {
+    margin: 0;
+}
+
+#p1 {
+    background: #31C3BD;
+}
+
+#ties {
+    background: #A8BFC9;
+}
+
+#p2 {
+    background: #F2B137;
+}
