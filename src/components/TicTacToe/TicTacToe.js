@@ -12,7 +12,8 @@ const TicTacToe = () => {
   let [p1Score, setP1Score] = useState(0);
   let [p2Score, setP2Score] = useState(0);
   let [tiesScore, setTiesScore] = useState(0);
-  console.log(count)
+  // let [noImage, setNoImage] = useState("" || "");
+  // console.log(count)
 
   const handleTurn = (e, idx) => {
     if (count % 2 === 0) {
@@ -26,10 +27,6 @@ const TicTacToe = () => {
     }
     checkWinner();
     tie(count);
-
-    // if (winner === "x") {
-
-    // }
   };
 
   const checkWinner = () => {
@@ -97,7 +94,12 @@ const TicTacToe = () => {
   }
 
   const handleReset = () => {
-    setTurns(["", "", "", "", "", "", "", "", ""]);
+    // had a hard time figuring out how to clear the images
+      // so defaulted to this
+    window.location.reload(true);
+    // console.log('entering reset')
+    // const getSquares = document.getElementsByClassName("squares");
+    // getSquares.innerHTML = `<img src='' style="margin:50px"/>`
   };
 
   return (
@@ -106,7 +108,9 @@ const TicTacToe = () => {
         <GameBoardTop count={count} handleReset={handleReset} />
         <div className="section2">
           <div className="rows" id="row1">
-            <div className="squares" onClick={(e) => handleTurn(e, 0)}></div>
+            <div className="squares" onClick={(e) => handleTurn(e, 0)}>
+            {/* <img src={noImage} style={{margin:"50px"}}/> */}
+            </div>
             <div className="squares" onClick={(e) => handleTurn(e, 1)}></div>
             <div className="squares" onClick={(e) => handleTurn(e, 2)}></div>
           </div>

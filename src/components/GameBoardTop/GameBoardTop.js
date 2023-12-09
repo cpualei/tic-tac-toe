@@ -16,11 +16,9 @@ const GameBoardTop = ({ count, handleReset }) => {
           <p>TURN</p>
         </div>
       </div>
-      <div>
-        <button className="refresh-button" onClick={() => handleReset}>
-          <img id="refresh-icon" src={refresh} />
-        </button>
-      </div>
+      <button className="refresh-button" onClick={handleReset}>
+        <img id="refresh-icon" src={refresh} />
+      </button>
     </div>
   );
 };
