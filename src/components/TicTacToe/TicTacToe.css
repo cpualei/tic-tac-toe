@@ -4,7 +4,16 @@
     height: 623px;
     width: 460px;
     margin: 139px 490px;
+    /* position: relative; */
 }
+
+/* .display-winner {
+    height: 200px;
+    width: 100%;
+    background-color: red;
+    z-index: 100;
+
+} */
 
 .section2 {
     display: flex;

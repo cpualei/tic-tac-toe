@@ -8,10 +8,11 @@ import GameBoardBottom from "../GameBoardBottom/GameBoardBottom";
 const TicTacToe = () => {
   let [count, setCount] = useState(0);
   let [turns, setTurns] = useState(["", "", "", "", "", "", "", "", ""]);
-  let [win, setWin] = useState(false);
+  let [winner, setWinner] = useState("");
   let [p1Score, setP1Score] = useState(0);
   let [p2Score, setP2Score] = useState(0);
   let [tiesScore, setTiesScore] = useState(0);
+  console.log(count)
 
   const handleTurn = (e, idx) => {
     if (count % 2 === 0) {
@@ -23,66 +24,77 @@ const TicTacToe = () => {
       turns[idx] = "o";
       setCount((count += 1));
     }
-    winner();
+    checkWinner();
+    tie(count);
 
-    if (win) {
-      setCount()
-    }
+    // if (winner === "x") {
+
+    // }
   };
 
-  const winner = () => {
+  const checkWinner = () => {
     if (turns[0] === turns[1] && turns[1] === turns[2] && turns[2] !== "") {
-      won(true);
+      won(turns[0]);
     } else if (
       turns[3] === turns[4] &&
       turns[4] === turns[5] &&
       turns[5] !== ""
     ) {
-      won(true);
+      won(turns[3]);
     } else if (
       turns[6] === turns[7] &&
       turns[7] === turns[8] &&
       turns[8] !== ""
     ) {
-      won(true);
+      won(turns[6]);
     } else if (
       turns[0] === turns[3] &&
       turns[3] === turns[6] &&
       turns[6] !== ""
     ) {
-      won(true);
+      won(turns[0]);
     } else if (
       turns[1] === turns[4] &&
       turns[4] === turns[7] &&
       turns[7] !== ""
     ) {
-      won(true);
+      won(turns[1]);
     } else if (
       turns[2] === turns[5] &&
       turns[5] === turns[8] &&
       turns[8] !== ""
     ) {
-      won(true);
+      won(turns[2]);
     } else if (
       turns[0] === turns[4] &&
       turns[4] === turns[8] &&
       turns[8] !== ""
     ) {
-      won(true);
+      won(turns[0]);
     } else if (
       turns[2] === turns[4] &&
       turns[4] === turns[6] &&
       turns[6] !== ""
     ) {
-      won(true);
+      won(turns[2]);
     }
   };
 
-  const won = (winner) => {
-    if (winner) {
-      setWin(true);
+  const won = (player) => {
+    if (player === "x") {
+      setP1Score((p1Score += 1));
+      setWinner(x);
+    } else {
+      setP2Score((p2Score += 1));
+      setWinner(circle);
     }
   };
+
+  const tie = (count) => {
+    if (count === 9) {
+      setTiesScore(tiesScore += 1);
+    }
+  }
 
   const handleReset = () => {
     setTurns(["", "", "", "", "", "", "", "", ""]);
@@ -90,29 +102,31 @@ const TicTacToe = () => {
 
   return (
     <div className="tic-tac-toe-container">
-      <GameBoardTop count={count} handleReset={handleReset} />
-      <div className="section2">
-        <div className="rows" id="row1">
-          <div className="squares" onClick={(e) => handleTurn(e, 0)}></div>
-          <div className="squares" onClick={(e) => handleTurn(e, 1)}></div>
-          <div className="squares" onClick={(e) => handleTurn(e, 2)}></div>
+      <div className={winner ? "display-winner" : "" }>
+        <GameBoardTop count={count} handleReset={handleReset} />
+        <div className="section2">
+          <div className="rows" id="row1">
+            <div className="squares" onClick={(e) => handleTurn(e, 0)}></div>
+            <div className="squares" onClick={(e) => handleTurn(e, 1)}></div>
+            <div className="squares" onClick={(e) => handleTurn(e, 2)}></div>
+          </div>
+          <div className="rows" id="row2">
+            <div className="squares" onClick={(e) => handleTurn(e, 3)}></div>
+            <div className="squares" onClick={(e) => handleTurn(e, 4)}></div>
+            <div className="squares" onClick={(e) => handleTurn(e, 5)}></div>
+          </div>
+          <div className="rows" id="row3">
+            <div className="squares" onClick={(e) => handleTurn(e, 6)}></div>
+            <div className="squares" onClick={(e) => handleTurn(e, 7)}></div>
+            <div className="squares" onClick={(e) => handleTurn(e, 8)}></div>
+          </div>
         </div>
-        <div className="rows" id="row2">
-          <div className="squares" onClick={(e) => handleTurn(e, 3)}></div>
-          <div className="squares" onClick={(e) => handleTurn(e, 4)}></div>
-          <div className="squares" onClick={(e) => handleTurn(e, 5)}></div>
-        </div>
-        <div className="rows" id="row3">
-          <div className="squares" onClick={(e) => handleTurn(e, 6)}></div>
-          <div className="squares" onClick={(e) => handleTurn(e, 7)}></div>
-          <div className="squares" onClick={(e) => handleTurn(e, 8)}></div>
-        </div>
+        <GameBoardBottom
+          p1Score={p1Score}
+          p2Score={p2Score}
+          tiesScore={tiesScore}
+        />
       </div>
-      <GameBoardBottom
-        p1Score={p1Score}
-        p2Score={p2Score}
-        tiesScore={tiesScore}
-      />
     </div>
   );
 };

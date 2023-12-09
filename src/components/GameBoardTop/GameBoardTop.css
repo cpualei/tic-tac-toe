@@ -17,6 +17,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px -4px 0px 0px #10212A inset;
+
 }
 
 .player-turn-div img {
